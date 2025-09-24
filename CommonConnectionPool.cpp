@@ -25,7 +25,7 @@ CommonConnectionPool::CommonConnectionPool() {
 
 // 线程安全的懒汉单例函数接口
 CommonConnectionPool *CommonConnectionPool::getConnectionPool() {
-    static CommonConnectionPool pool;
+    static CommonConnectionPool pool = CommonConnectionPool();
     return &pool;
 }
 
@@ -104,7 +104,7 @@ void CommonConnectionPool::scannerConnectionTask() {
         std::unique_lock<std::mutex> lock(_queueMutex);
         while (_connectionCnt > _initSize) {
             Connection* p = _connectionQueue.front();
-            if (p->getAliveTime() > (_maxIdleTime*1000)) {
+            if (p->getAliveTime() > std::chrono::seconds(_maxIdleTime)) {
                 _connectionQueue.pop();
                 _connectionCnt--;
                 delete p;//调用connection的析构函数close

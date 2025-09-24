@@ -3,6 +3,7 @@
 Connection::Connection()
 {
         _conn = mysql_init(nullptr);
+        refreshAliveTime();
 }
 
 Connection::~Connection()
@@ -47,9 +48,9 @@ MYSQL_RES* Connection::query(std::string sql)
 }
 
 void Connection::refreshAliveTime() {
-    _aliveTime = clock();
+    _aliveTime = std::chrono::system_clock::now();
 }
 
-clock_t Connection::getAliveTime() const{
-    return clock()-_aliveTime;
+std::chrono::duration<double> Connection::getAliveTime() const{
+    return std::chrono::system_clock::now() - _aliveTime;
 }

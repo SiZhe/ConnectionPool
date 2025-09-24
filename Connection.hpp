@@ -25,10 +25,10 @@ public:
     void refreshAliveTime();
 
     // 返回存活时间
-    clock_t getAliveTime() const;
+    std::chrono::duration<double> getAliveTime() const;
 private:
     // 表示和MySQL Server的一条连接
     MYSQL *_conn;
-    std::clock_t _aliveTime; // 记录进入空闲状态的起始存活时间
+    std::chrono::time_point<std::chrono::system_clock> _aliveTime; // 记录进入空闲状态的起始存活时间
 };
 
