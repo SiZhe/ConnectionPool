@@ -1,4 +1,4 @@
-#include "CommonConnectionPool.hpp"
+#include "../CommonConnectionPool.hpp"
 
 CommonConnectionPool::CommonConnectionPool() {
     // 加载配置项

@@ -1,6 +1,6 @@
 #pragma once
-#include "public.hpp"
-#include "Connection.hpp"
+#include "../public.hpp"
+#include "../Connection.hpp"
 
 class CommonConnectionPool {
 public:

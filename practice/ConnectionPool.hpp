@@ -1,22 +1,21 @@
 #pragma once
-#include "public.hpp"
-#include "Connection.hpp"
+#include "../public.hpp"
+#include "../Connection.hpp"
 
 class ConnectionPool {
 public:
     static ConnectionPool* getConnectionPool();
-
-    std::shared_ptr<Connection> getConnection();
+    std::shared_ptr<Connection>  getConnection();
 private:
-    ConnectionPool();
     ~ConnectionPool();
+    //懒汉单例模式
+    ConnectionPool();
 
-    // 加载sql配置项
     bool loadSqlConfig();
 
-    void producerThread();
+    void producer();
 
-    void scannerThread();
+    void scanner();
 private:
     // 数据库设置
     std::string _ip;
@@ -35,6 +34,8 @@ private:
     unsigned int _connectionTimeOut;
 
     std::queue<Connection*> _connectionQueue;
+
+    // 多线程
     std::mutex mtx;
     std::condition_variable cv;
 };

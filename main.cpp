@@ -1,6 +1,7 @@
 #include "public.hpp"
 #include "Connection.hpp"
-#include "CommonConnectionPool.hpp"
+//#include "practice/CommonConnectionPool.hpp"
+//#include "practice/ConnectionPool.hpp"
 #include "ConnectionPool.hpp"
 
 #if 0

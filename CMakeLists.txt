@@ -12,7 +12,8 @@ link_directories(/opt/homebrew/opt/mysql-client/lib)
 add_executable(ConnectionPool
         main.cpp
         Connection.cpp
-        CommonConnectionPool.cpp
+        #practice/CommonConnectionPool.cpp
+        #practice/ConnectionPool.cpp
         ConnectionPool.cpp)
 
 # 4. 链接 MySQL 客户端库
